@@ -68,19 +68,10 @@ public class Acesso implements Serializable{
 			return null;
 		}
 		
-		Duration d1 = Duration.between(entrada, saida);		
-		long dias = d1.toDays();
-		
-		Duration d2 = d1.minus(dias, ChronoUnit.DAYS);		
-	    long horas = d2.toHours();
-	    
-	    Duration d3 = d2.minus(horas, ChronoUnit.HOURS);	    
-	    long minutos = d3.toMinutes();
-	    
-	    Duration d4 = d3.minus(minutos, ChronoUnit.MINUTES);
-	    long segundos = d4.getSeconds();
-		
-		return String.format("%02d:%02d:%02d", horas, minutos, segundos);
+		Duration d = Duration.between(entrada, saida);		
+		long s = d.getSeconds();
+
+		return String.format("%02d:%02d", s / 3600, (s % 3600)/60);
 	}
 
 	public Integer getId() {
