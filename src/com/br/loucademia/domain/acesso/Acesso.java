@@ -1,7 +1,9 @@
 package com.br.loucademia.domain.acesso;
 
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -57,9 +59,28 @@ public class Acesso implements Serializable{
 			tipoAcesso = null;
 		}		
 		
-		return tipoAcesso;
+		return tipoAcesso;		
+	}
+	
+	public String calcularDuracao() {
 		
+		if(entrada == null || saida == null) {
+			return null;
+		}
 		
+		Duration d1 = Duration.between(entrada, saida);		
+		long dias = d1.toDays();
+		
+		Duration d2 = d1.minus(dias, ChronoUnit.DAYS);		
+	    long horas = d2.toHours();
+	    
+	    Duration d3 = d2.minus(horas, ChronoUnit.HOURS);	    
+	    long minutos = d3.toMinutes();
+	    
+	    Duration d4 = d3.minus(minutos, ChronoUnit.MINUTES);
+	    long segundos = d4.getSeconds();
+		
+		return String.format("%02d:%02d:%02d", horas, minutos, segundos);
 	}
 
 	public Integer getId() {

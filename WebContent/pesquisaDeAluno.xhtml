@@ -8,29 +8,23 @@
       lang="pt-br">
 
 <ui:composition template="layout.xhtml">
+<ui:param name="title" value="Pesquisa de Aluno" />
    <ui:define name="conteudo">
-    
-    <h1>Pesquisa de Aluno</h1>
-
-       <h:panelGroup rendered="#{!facesContext.messageList.isEmpty()}">
-	     <div id="infoMessage">
-	        <h:messages />
-	     </div>
-     </h:panelGroup>
-
-    <br/>
+       <f:metadata>
+          <f:viewAction action="#{pesquisaAlunoBean.check}" />
+       </f:metadata>
     
     <form jsf:id="form">
        <fieldset>
               <legend>Parametro da Pesquisa</legend>
               <label for="id">Matricula</label><br/>
-              <input type="text" jsf:value="#{pesquisaAlunoBean.matricula}" id="id"/><br/> 
+              <input type="text" jsf:value="#{pesquisaAlunoBean.matricula}" id="id" jsf:label="Matricula" /><br/> 
               <label for="nome">Nome</label><br/>
-              <input type="text" jsf:value="#{pesquisaAlunoBean.nome}" id="nome"/><br/>              
+              <input type="text" jsf:value="#{pesquisaAlunoBean.nome}" id="nome" jsf:label="nome" /><br/>              
               <label for="rg">RG</label><br/>
-              <input type="text" jsf:value="#{pesquisaAlunoBean.rg}" id="rg"/><br/>               
+              <input type="text" jsf:value="#{pesquisaAlunoBean.rg}" id="rg" jsf:label="rg" /><br/>               
               <label for="telefoneDDD">Telefone</label><br/>
-              <input type="tel" jsf:value="#{pesquisaAlunoBean.telefone}" id="telefoneNumero"/> 
+              <input type="tel" jsf:value="#{pesquisaAlunoBean.telefone}" id="telefoneNumero" jsf:label="telefone" /> 
          </fieldset>
          
          <br/>

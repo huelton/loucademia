@@ -12,17 +12,9 @@
          <f:viewParam name="matricula" value="#{alunoBean.matricula}"/>
          <f:viewAction action="#{alunoBean.carregar}" />
     </f:metadata>
+     <ui:param name="title" value="#{alunoBean.titulo}" />
    <ui:define name="conteudo">
-  
-     <h1>#{alunoBean.titulo}</h1>
-    
-     <h:panelGroup rendered="#{!facesContext.messageList.isEmpty()}">
-	     <div id="infoMessage">
-	        <h:messages />
-	     </div>
-     </h:panelGroup>
-     <br></br>  
-    
+      
      <form jsf:id="form">
          <input type="hidden" jsf:value="#{alunoBean.aluno.matricula}" />
          <fieldset>
@@ -133,8 +125,11 @@
       
          <br></br>     
      
-        <input type="submit" value="Gravar" jsf:action="#{alunoBean.gravar}"/>
-        <input type="button" value="Relatorio de Acessos"/>      
+        <input type="submit" value="Gravar" jsf:action="#{alunoBean.gravar}"/>&#160;
+        <input type="button" value="Relatorio de Entradas e Saidas" 
+               jsf:outcome="relatoriosDeEntradaSaida?matricula=#{alunoBean.aluno.matricula}"
+               jsf:rendered="#{alunoBean.matricula != null}"
+               />      
     
     </form>
     
